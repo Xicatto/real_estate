@@ -62,37 +62,38 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     log(list.length.toString());
-
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0),
-        child: Column(
-          children: [
-            searchBoxWidget(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 16.0,
-                  ),
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                      height: 300,
-                      child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Column(
+            children: [
+              searchBoxWidget(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 16.0,
+                    ),
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        height: 300,
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: getList(list[index]),
                         ),
-                        child: getList(list[index]),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -196,6 +197,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(type)
             ],
           ),
+        ),
+        SizedBox(
+          height: 16.0,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
